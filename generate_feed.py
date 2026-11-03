@@ -8,7 +8,7 @@ from xml.sax.saxutils import escape
 
 API = (
     "https://www.contractsfinder.service.gov.uk/"
-    "Published/Notices/OCDS/Search?limit=100"
+    "Published/Notices/OCDS/Search?limit=500"
 )
 OUTPUT = "feed.xml"
 
