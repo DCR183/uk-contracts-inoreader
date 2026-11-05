@@ -9,7 +9,7 @@ from email.utils import format_datetime
 BASE = "https://www.contractsfinder.service.gov.uk/"
 API = BASE + "Published/Notices/OCDS/Search?limit=100"
 OUTPUT = "feed.xml"
-MAX_PAGES = 5
+MAX_PAGES = 20
 
 def parse_date(value):
     if not value:
