@@ -104,8 +104,7 @@ def collect_notices(releases):
 
         title = tender.get("title") or "Untitled contract"
         description = tender.get("description") or ""
-
-                url = next(
+        url = next(
             (
                 doc["url"]
                 for doc in release.get("planning", {}).get("documents", [])
