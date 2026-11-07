@@ -105,15 +105,15 @@ def collect_notices(releases):
         title = tender.get("title") or "Untitled contract"
         description = tender.get("description") or ""
         
-url = next(
-    (
+        url = next(
+        (
         doc["url"]
         for doc in tender.get("documents", [])
         if doc.get("url")
         and "/Notice/" in doc["url"]
-    ),
-    BASE + "Search?searchTerm=" + urllib.parse.quote(title)
-)
+        ),
+        BASE + "Search?searchTerm=" + urllib.parse.quote(title)
+        )
 
 
         results[identifier] = {
