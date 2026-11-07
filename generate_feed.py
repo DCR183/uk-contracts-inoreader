@@ -154,7 +154,7 @@ def build_feed(notices):
         ET.SubElement(item, "link").text = notice["url"]
         ET.SubElement(
             item, "guid", isPermaLink="false"
-        ).text = notice["id"] + "-direct-link-v4"
+        ).text = notice["id"] + "-direct-link-v3"
         backup_url = (
     "https://www.contractsfinder.service.gov.uk/Search?searchTerm="
     + quote(notice["title"])
