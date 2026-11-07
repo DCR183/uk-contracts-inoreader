@@ -159,12 +159,17 @@ def build_feed(notices):
     "https://www.contractsfinder.service.gov.uk/Search?searchTerm="
     + quote(notice["title"])
         )
+        opentenders_url = (
+    "https://opentenders.co.uk/search?q="
+    + quote(notice["title"])
+        )
         details = (
             f'Advertised value: GBP {notice["amount"]:,.0f}\n'
             f'Status: active\n'
             f'Deadline: {notice["deadline"]}\n\n'
             + f'Official contract: {notice["url"]}\n'
             + f'Backup search: {backup_url}\n'
+            + f'OpenTenders backup: {opentenders_url}\n'
             + f'Contract reference: {notice["id"]}\n\n'
             + notice["description"]
         )
