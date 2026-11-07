@@ -169,7 +169,7 @@ def build_feed(notices):
             f'Deadline: {notice["deadline"]}\n\n'
             + f'Official contract: {notice["url"]}\n'
             + f'Backup search: {backup_url}\n'
-            + f'<p><a href="{opentenders_url}">View on OpenTenders</a></p>'
+            + f'<p><a href="{opentenders_url}">View on OpenTenders</a></p>\n'
             + f'Contract reference: {notice["id"]}\n\n'
             + notice["description"]
         )
