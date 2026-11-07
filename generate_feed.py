@@ -1,6 +1,7 @@
 
 import json
 import urllib.request
+from urllib.parse import quote
 import urllib.parse
 import xml.etree.ElementTree as ET
 from datetime import datetime, timezone
@@ -154,11 +155,17 @@ def build_feed(notices):
         ET.SubElement(
             item, "guid", isPermaLink="false"
         ).text = notice["id"] + "-direct-link-v3"
-
+        backup_url = (
+    "https://www.contractsfinder.service.gov.uk/Search?searchTerm="
+    + quote(notice["title"])
+        )
         details = (
             f'Advertised value: GBP {notice["amount"]:,.0f}\n'
             f'Status: active\n'
             f'Deadline: {notice["deadline"]}\n\n'
+            + f'Official contract: {notice["url"]}\n'
+            + f'Backup search: {backup_url}\n'
+            + f'Contract reference: {notice["id"]}\n\n'
             + notice["description"]
         )
 
