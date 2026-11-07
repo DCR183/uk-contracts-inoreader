@@ -153,7 +153,7 @@ def build_feed(notices):
         ET.SubElement(item, "link").text = notice["url"]
         ET.SubElement(
             item, "guid", isPermaLink="false"
-        ).text = notice["id"]
+        ).text = notice["id"] + "-direct-link-v2"
 
         details = (
             f'Advertised value: GBP {notice["amount"]:,.0f}\n'
