@@ -1,0 +1,42 @@
+
+name: Update Scotland Contracts RSS
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "37 */6 * * *"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: scotland-rss
+  cancel-in-progress: false
+
+jobs:
+  update-scotland:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Generate Scottish RSS feed
+        run: python generate_scotland.py
+
+      - name: Commit updated RSS feed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add scotland.xml
+          if ! git diff --cached --quiet; then
+            git commit -m "Update Scotland contracts RSS"
+            git push
+          else
+            echo "No feed changes"
+          fi
