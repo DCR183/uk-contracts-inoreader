@@ -25,6 +25,8 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+      - name: Install SSL certificates
+        run: python -m pip install certifi
 
       - name: Generate Scottish RSS feed
         run: python generate_scotland.py
