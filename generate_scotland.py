@@ -20,7 +20,7 @@ def get_notices(month, notice_type):
     request = urllib.request.Request(
         url, headers={"User-Agent": "UKTenderAlerts/1.0"}
     )
-    with urllib.request.urlopen(request, timeout=30, context=ssl.create_default_context(cafile=certifi.where())) as response:
+        with urllib.request.urlopen(request, timeout=30, context=ssl.create_default_context(cafile=certifi.where())) as response:
         data = json.load(response)
 
     if isinstance(data, list):
