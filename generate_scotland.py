@@ -2,6 +2,7 @@
 import json
 import certifi
 import ssl
+import truststore
 import urllib.request
 import xml.etree.ElementTree as ET
 from datetime import datetime, timezone
