@@ -3,7 +3,7 @@ import json
 import certifi
 import ssl
 import truststore
-truststore.inject_into_ssl()
+ssl_context = truststore.SSLContext(ssl.PROTOCOL_TLS_CLIENT)
 import urllib.request
 import xml.etree.ElementTree as ET
 from datetime import datetime, timezone
