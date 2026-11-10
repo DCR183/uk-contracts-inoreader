@@ -34,6 +34,13 @@ jobs:
             "http://crt.sectigo.com/SectigoPublicServerAuthenticationCADVR36.crt"
           openssl x509 -inform DER -in sectigo-intermediate.crt \
             -noout -subject -issuer -fingerprint -sha256
+            - name: Check downloaded certificate fingerprint
+         run: |
+          echo "Downloaded certificate SHA-256:"
+          openssl x509 -inform DER \
+            -in sectigo-intermediate.crt \
+            -noout -fingerprint -sha256
+          echo "Certificate verification still pending"
       - name: Diagnose Scottish API SSL
         run: |
           python - <<'PY'
