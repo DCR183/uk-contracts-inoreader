@@ -4,7 +4,6 @@ import certifi
 import ssl
 import truststore
 ssl_context = truststore.SSLContext(ssl.PROTOCOL_TLS_CLIENT)
-ssl_context.load_verify_locations(cafile="sectigo-intermediate.crt")
 import urllib.request
 import xml.etree.ElementTree as ET
 from datetime import datetime, timezone
