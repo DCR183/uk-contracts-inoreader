@@ -45,7 +45,7 @@ jobs:
 
           for name, context in contexts.items():
               try:
-              with urllib.request.urlopen(url, context=context, timeout=15) as response:
+                  with urllib.request.urlopen(url, context=context, timeout=15) as response:
                       print(f"{name}: HTTP {response.status}")
               except urllib.error.HTTPError as error:
                   print(f"{name}: HTTP {error.code} (TLS connection succeeded)")
