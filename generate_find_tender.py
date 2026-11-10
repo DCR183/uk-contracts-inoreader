@@ -145,7 +145,7 @@ def generate_feed(notices):
         item = ET.SubElement(channel, "item")
         ET.SubElement(item, "title").text = notice["title"]
         ET.SubElement(item, "link").text = notice["url"]
-        ET.SubElement(item, "guid", isPermaLink="false").text = notice["id"] + "-find-tender-v2"
+        ET.SubElement(item, "guid", isPermaLink="false").text = notice["id"] + "-find-tender-v3"
         ET.SubElement(item, "pubDate").text = format_datetime(notice["published"])
         ET.SubElement(item, "description").text = (
             f'Advertised value: GBP {notice["amount"]:,.0f}\n'
