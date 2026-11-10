@@ -27,6 +27,13 @@ jobs:
           python-version: "3.12"
       - name: Install SSL certificates
         run: python -m pip install --upgrade certifi truststore
+      - name: Download Scottish API intermediate certificate
+        run: |
+          curl --fail --location --retry 3 \
+            --output sectigo-intermediate.crt \
+            "http://crt.sectigo.com/SectigoPublicServerAuthenticationCADVR36.crt"
+          openssl x509 -inform DER -in sectigo-intermediate.crt \
+            -noout -subject -issuer -fingerprint -sha256
       - name: Diagnose Scottish API SSL
         run: |
           python - <<'PY'
