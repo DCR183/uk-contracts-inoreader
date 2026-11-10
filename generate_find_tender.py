@@ -43,19 +43,32 @@ def eligible_amounts(tender):
             yield amount
 
 
+
 def notice_link(release):
-    # OCDS release identifiers do not always map to the public notice URL.
-    # Use an explicitly supplied publication URL when available.
-    for doc in release.get("documents") or []:
+    base = "https://www.find-tender.service.gov.uk"
+
+    documents = (
+        (release.get("documents") or [])
+        + ((release.get("tender") or {}).get("documents") or [])
+    )
+
+    for doc in documents:
         url = doc.get("url", "")
-        if url.startswith("https://") and "find-tender.service.gov.uk" in urllib.parse.urlparse(url).hostname.__str__():
+        parsed = urllib.parse.urlparse(url)
+
+        if (
+            parsed.scheme == "https"
+            and parsed.hostname == "www.find-tender.service.gov.uk"
+            and parsed.path.lower().startswith("/notice/")
+            and "/attachment/" not in parsed.path.lower()
+        ):
             return url
-    for doc in (release.get("tender") or {}).get("documents") or []:
-        url = doc.get("url", "")
-        if url.startswith("https://") and urllib.parse.urlparse(url).hostname == "www.find-tender.service.gov.uk":
-            return url
+
     ocid = release.get("ocid", "")
-    return "https://www.find-tender.service.gov.uk/Search/Results?keywords=" + urllib.parse.quote(ocid)
+    return (
+        base + "/Search/Results?keywords="
+        + urllib.parse.quote(ocid)
+    )
 
 
 def fetch_notices():
