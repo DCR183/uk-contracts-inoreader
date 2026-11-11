@@ -328,7 +328,7 @@ def create_feed(items):
         # Stable identifiers prevent duplicate alerts
         # whenever the ranking changes.
         stable_id = hashlib.sha256(
-            item["link"].encode("utf-8")
+          (item["link"] + "|score-v2|" + str(item["score"])).encode("utf-8")
         ).hexdigest()[:24]
 
         lines.extend([
