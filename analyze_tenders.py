@@ -83,13 +83,11 @@ def fetch(url):
 def get_text(item, tag):
     return clean(item.findtext(tag, default=""))
 
+
 def extract_value(text):
     patterns = [
-        r"(?:estimated value|contract value|total value|"
-        r"estimated contract value|value excluding vat|"
-        r"value including vat)\s*[:\-]?\s*"
-        r"£\s*([\d,]+(?:\.\d{1,2})?)",
-        r"£\s*([\d,]+(?:\.\d{1,2})?)",
+        r"(?:advertised value|estimated value|contract value|total value|estimated contract value|value excluding vat|value including vat)\s*[:\-]?\s*(?:£|GBP)\s*([\d,]+(?:\.\d{1,2})?)",
+        r"(?:£|GBP)\s*([\d,]+(?:\.\d{1,2})?)",
     ]
 
     for pattern in patterns:
@@ -100,6 +98,7 @@ def extract_value(text):
             except ValueError:
                 pass
     return None
+
 
 def parse_deadline(text):
     for pattern in DEADLINE_PATTERNS:
