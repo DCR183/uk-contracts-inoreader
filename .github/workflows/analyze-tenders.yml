@@ -4,7 +4,7 @@ name: Analyze UK Tender Opportunities
 on:
   workflow_dispatch:
   schedule:
-    - cron: '35 */6 * * *'
+    - cron: '*/15 * * * *'
 
 permissions:
   contents: write
