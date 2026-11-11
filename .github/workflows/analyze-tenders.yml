@@ -1,0 +1,40 @@
+
+name: Analyze UK Tender Opportunities
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '35 */6 * * *'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: analyze-uk-tenders
+  cancel-in-progress: false
+
+jobs:
+  analyze:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Analyze tenders
+        run: python analyze_tenders.py
+
+      - name: Commit updated RSS
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add best_opportunities.xml
+          if ! git diff --cached --quiet; then
+            git commit -m "Update ranked tender opportunities"
+            git push
+          fi
