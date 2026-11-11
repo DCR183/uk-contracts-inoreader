@@ -19,27 +19,40 @@ MIN_VALUE = 1000
 MAX_VALUE = 25000
 MAX_ITEMS = 100
 
+
 GOOD_CATEGORIES = {
-    "cleaning": 18,
-    "grounds maintenance": 18,
-    "printing": 18,
-    "translation": 17,
-    "delivery": 16,
-    "courier": 16,
-    "transport": 14,
-    "logistics": 14,
-    "maintenance": 14,
-    "repair": 13,
-    "marketing": 13,
-    "website": 13,
-    "graphic design": 13,
-    "office supplies": 13,
+    # Easier to source from existing UK suppliers
+    "cleaning": 25,
+    "window cleaning": 25,
+    "grounds maintenance": 24,
+    "printing": 25,
+    "translation": 22,
+    "courier": 24,
+    "parcel delivery": 24,
+    "office supplies": 23,
+    "stationery": 23,
+    "graphic design": 22,
+    "website maintenance": 22,
+    "promotional materials": 22,
+    "waste collection": 20,
+    "pest control": 18,
+    "equipment supply": 20,
+
+    # Possible outsourcing, subject to qualifications
+    "general maintenance": 17,
+    "transport services": 17,
     "installation": 12,
-    "waste collection": 12,
+    "catering": 12,
     "training": 10,
-    "catering": 10,
-    "supply": 8,
+
+    # Specialist services: lower priority
+    "engineering": 3,
+    "consultancy": 3,
+    "structural engineer": 2,
+    "building services engineer": 2,
+    "architectural": 2,
 }
+
 
 RISK_TERMS = {
     "security clearance": 20,
@@ -55,7 +68,13 @@ RISK_TERMS = {
     "iso 9001": 8,
     "iso 27001": 12,
     "construction of": 20,
-    "major works": 20,
+    "major works": 20,    
+    "structural engineer": 25,
+    "building services engineer": 25,
+    "specialist consultant": 20,
+    "chartered engineer": 25,
+    "heritage consultant": 18,
+    "professional registration": 15,
 }
 
 DEADLINE_PATTERNS = [
